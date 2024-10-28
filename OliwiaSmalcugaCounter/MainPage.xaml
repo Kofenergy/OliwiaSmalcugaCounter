@@ -1,0 +1,45 @@
+﻿<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="OliwiaSmalcugaCounter.MainPage">
+
+    <StackLayout Padding="30">
+        <Entry x:Name="CounterNameEntry" Placeholder="Podaj nazwę" BackgroundColor="Black" FontSize="20"/>
+        <Entry x:Name="InitialValueEntry" Placeholder="Podaj wartość" Keyboard="Numeric" BackgroundColor="Black" FontSize="20" />
+        <Picker x:Name="ColorPicker" BackgroundColor="Black" FontSize="20">
+            <Picker.ItemsSource>
+                <x:Array Type="{x:Type x:String}">
+
+                    <x:String>Black</x:String>
+                    <x:String>LightGray</x:String>
+                    <x:String>LightBlue</x:String>
+                    <x:String>Blue</x:String>
+                    <x:String>DarkBlue</x:String>
+                    <x:String>Purple</x:String>
+                    <x:String>Red</x:String>
+                    <x:String>Pink</x:String>
+                    
+                </x:Array>
+            </Picker.ItemsSource>
+        </Picker>
+        <Button Text="Dodaj licznik" Clicked="OnAddCounterClicked" BackgroundColor="Black" FontSize="20"/>
+
+        <CollectionView x:Name="CountersCollectionView">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Frame Margin="20" Padding="20" BackgroundColor="{Binding Color}">
+                        <StackLayout>
+                            <Label Text="{Binding Name}" FontSize="26"/>
+                            <Label Text="{Binding Value}" FontSize="20"/>
+                            <StackLayout Orientation="Horizontal">
+                                <Button Text="+" FontSize="18" Clicked="OnIncrementClicked" CommandParameter="{Binding .}" />
+                                <Button Text="-" FontSize="18" Clicked="OnDecrementClicked" CommandParameter="{Binding .}" />
+                                <Button Text="Reset" FontSize="18" Clicked="OnResetClicked" CommandParameter="{Binding .}" />
+                                <Button Text="Delete" FontSize="18" Clicked="OnDeleteClicked" CommandParameter="{Binding .}" />
+                            </StackLayout>
+                        </StackLayout>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </StackLayout>
+</ContentPage>
