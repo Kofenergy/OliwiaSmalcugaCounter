@@ -33,7 +33,7 @@ namespace OliwiaSmalcugaCounter
 
         private async void InitializeDatabase()
         {
-            var dbPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "counters.db");
+            var dbPath = Path.Combine(FileSystem.AppDataDirectory, "counters.db");
             _database = new CounterDatabase(dbPath);
         }
 
